@@ -9,12 +9,14 @@ namespace pauln{
     //Set final state detected particles
     //Note if particle is added to final with a valid genID it will be used
     //to determine the correct permutation of the simulated event
+    
                                                 // GenePi LUND looks like:
-    AddParticle("Electron",&_electron,kTRUE,0); // 1 -1 1    11 
-    AddParticle("Neutron",&_neutron,kTRUE,2);   // 2 -1 1  2112
-    AddParticle("Gamma1",&_gamma1,kTRUE,3);     // 3 -1 1  2212
-    AddParticle("Gamma2",&_gamma2,kTRUE,4);     // 4 -1 1    22
-                                                // 5 -1 1    22
+    AddParticle("Electron",&_electron,kTRUE,0); // 1 -1 1    11 (scattered E)
+    AddParticle("Neutron",&_neutron,kTRUE,2);   // 2 -1 1  2112 (spectator)
+    AddParticle("Gamma1",&_gamma1,kTRUE,3);     // 3 -1 1  2212 (recoil)
+    AddParticle("Gamma2",&_gamma2,kTRUE,4);     // 4 -1 1    22 (photon)
+                                                // 5 -1 1    22 (photon)
+                                                
     //AddParticle("Name",particle,true/false you want to write in final vector, genID for linking to generated truth value)
     // AddParticle("PARTICLE",&_PARTICLE,kTRUE,-1);
 
@@ -46,15 +48,20 @@ namespace pauln{
       //    where another Topology could use  Particle recoil = _proton for pHEMP?
 
        
-    };
+    }; // close _doToTopo
       
-  } // close _doToTopo
-
+  } // close Define
  
   ///////////////////////$$$$$$$$$$$$$$$$$$$$$$$$$$//////////////////////  
   void Pi0::Kinematics(){
     //Define reaction specific kinematic calculations here
     //Assign to tree data TD.var=
+
+    auto gg_p4 = _gamma1.P4() + _gamma2.P4(); //reconstructed pi0
+    TD->IM_g1g2 = gg_p4.M();
+
+    //Thin out ouput: remove any events with very broad (~6sigma) pi0-mass cut
+    //if (TD->IM_g1g2 < 0.466 || TD->IM_g1g2 > 0.975) {RejectEvent(); return;}
 
     //Use Kinematics to calculate electron variables
     //Note this assumes you called your electron "electron" or "Electron"
@@ -87,6 +94,7 @@ namespace pauln{
     TD->rec_theta = DEG*_neutron.P4().Theta();
     TD->rec_phi   = DEG*_neutron.P4().Phi();
     TD->rec_status = _neutron.CLAS12()->par()->getStatus();
+    TD->rec_PID = _neutron.Truth()->_pdgCode;
 
     TD->e_px = _electron.P4().Px();
     TD->e_py = _electron.P4().Py();
@@ -96,7 +104,7 @@ namespace pauln{
     TD->e_pT = TMath::Sqrt(_electron.P4().Perp2());
     TD->e_theta = DEG*_electron.P4().Theta();
     TD->e_phi   = DEG*_electron.P4().Phi();
-     TD->e_status = _electron.CLAS12()->par()->getStatus();
+    TD->e_status = _electron.CLAS12()->par()->getStatus();
 
     TD->phot1_px = _gamma1.P4().Px();
     TD->phot1_py = _gamma1.P4().Py();
@@ -118,9 +126,10 @@ namespace pauln{
     TD->phot2_phi   = DEG*_gamma2.P4().Phi();
     TD->phot2_status = _gamma2.CLAS12()->par()->getStatus();
 
+    TD->rec_Beta = calc_Beta(_neutron);
+    TD->phot1_Beta = calc_Beta(_gamma1);
+    TD->phot2_Beta = calc_Beta(_gamma2);
 
-    auto gg_p4 = _gamma1.P4() + _gamma2.P4(); //reconstructed pi0
-    TD->IM_g1g2 = gg_p4.M();
 
     auto total_p4 = _beam + _target - (_electron.P4() + _neutron.P4() + gg_p4);
     TD->MM2_total =  total_p4.M2();
@@ -185,6 +194,15 @@ namespace pauln{
     TD->recoil_T = _neutron.P4().E() - 0.939565420; //target assumed at rest (E = m)
     TD->recon_recoil_T = Reconstruct_Recoil_KinE();
     TD->dneutT = TD->recon_recoil_T - TD->recoil_T;
+
+    TD->e_sampfrac = Calc_SamplingFract(_electron);
+
+    if (_neutron.Truth()->_pdgCode==2212){
+      TD->flag_MC_neutrec = 0;
+    }
+    else if (_neutron.Truth()->_pdgCode==2112){
+      TD->flag_MC_neutrec = 1;
+    }
   }
     
   ///////////////////////$$$$$$$$$$$$$$$$$$$$$$$$$$//////////////////////  
@@ -322,6 +340,21 @@ namespace pauln{
     return ((mass <= upper) && (mass >= lower)) ? 1 : 0;
 
   } // close Pi0mass_3sigma_check
+
+  Double_t Pi0::Calc_SamplingFract(Particle& part){
+
+    auto c12=part.CLAS12();
+    if(c12->getRegion()!=clas12::FD) return true; //cut only applies to FD
+
+    double part_p = part.P4().P();
+    double ECIN_en = c12->cal(clas12::ECIN)->getEnergy();
+    double ECOUT_en = c12->cal(clas12::ECOUT)->getEnergy();
+    double PCAL_en = c12->cal(clas12::PCAL)->getEnergy();
+    double total_CAL_edep = ECIN_en + ECOUT_en + PCAL_en;
+
+    return (total_CAL_edep/part_p);
+
+  }
 
   Double_t Pi0::Reconstruct_Recoil_KinE(/*Double_t beamE, HSLorentzVector product_p4, HSLorentzVector recoil_p4,
               Double_t mTarget, Double_t mRecoil, Double_t mSpectator*/)
