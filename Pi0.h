@@ -56,6 +56,7 @@ namespace pauln{
     TVector3 p3(chanser::HSLorentzVector v);
     Short_t Pi0mass_3sigma_check();
     Double_t Reconstruct_Recoil_KinE();
+    Double_t Calc_SamplingFract(Particle& part);
 
   protected :
     void Kinematics() final;
@@ -106,6 +107,13 @@ namespace pauln{
     // and returns true or false.
     auto c12=part.CLAS12(); //if you require other DST data
     return c12->getRegion() == region ?  kTRUE :  kFALSE;
+  }
+
+  inline Double_t calc_Beta(const Particle& part){
+    Double_t p = part.P4().P();
+    Double_t E = part.P4().E();
+
+    return p/E;
   }
 
 }
