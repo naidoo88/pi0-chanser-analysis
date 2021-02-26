@@ -15,7 +15,7 @@ namespace pauln{
       
     //data member for tree branches below here
     Int_t helicity = 0;
-    Int_t helicityonline = 0;
+    //Int_t helicityonline = 0;
 
     Double_t W2=0;
     Double_t Q2=0;
@@ -71,7 +71,8 @@ namespace pauln{
     Double_t rec_pT  = 0; 
     Double_t rec_theta  = 0;
     Double_t rec_phi  = 0;
-    Int_t rec_status = 0;
+    Short_t rec_status = 0;
+    Short_t rec_PID = 0;
 
     Double_t e_px  = 0; 
     Double_t e_py  = 0; 
@@ -81,7 +82,7 @@ namespace pauln{
     Double_t e_pT  = 0; 
     Double_t e_theta  = 0;
     Double_t e_phi  = 0;
-    Int_t e_status = 0;
+    Short_t e_status = 0;
 
     Double_t phot1_px  = 0;
     Double_t phot1_py  = 0;
@@ -91,7 +92,7 @@ namespace pauln{
     Double_t phot1_pT  = 0;
     Double_t phot1_theta = 0;
     Double_t phot1_phi = 0;
-    Int_t phot1_status = 0;
+    Short_t phot1_status = 0;
 
     Double_t phot2_px  = 0;
     Double_t phot2_py  = 0;
@@ -101,20 +102,23 @@ namespace pauln{
     Double_t phot2_pT  = 0;
     Double_t phot2_theta = 0;
     Double_t phot2_phi = 0;
-    Int_t phot2_status = 0;
+    Short_t phot2_status = 0;
+
+    Double_t rec_Beta = 0;
+    Double_t phot1_Beta = 0;
+    Double_t phot2_Beta = 0;
+
+    Double_t e_sampfrac = 0;
+    Double_t rcdb_Ebeam = 0;
+
 
     //flags
     Short_t flag_photon1_FT = -1;
     Short_t flag_photon1_FD = -1;
     Short_t flag_photon2_FT = -1;
     Short_t flag_photon2_FD = -1;      
-    
     Short_t flag_cut_3sigPi0IM = -1;
-
-    Double_t rcdb_Ebeam = 0;
-
-    //counters
-    //Int_t n_nonFTFDphotons = 0;
+    Short_t flag_MC_neutrec = -1;
 
     ///////////////////////////////////////////////////////////
     //LEAVE THE FOLLOWING FUNCTIONS
