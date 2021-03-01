@@ -30,7 +30,7 @@
   chain.Add("/w/work3/home/pauln/sim/pi0/cooked_out_rgb_pi0_15*.hipo"); //*
   
   // chain.GetNRecords();
-  chanser::HipoProcessor processor(&chain,"finalstates/FullPhotonExclCombs.txt", "output/chanser_MC15_gammatruth");
+  chanser::HipoProcessor processor(&chain,"finalstates/eff.txt", "output/chanser_MC15_eff");
   //chanser::HipoProcessor processor(&chain,"finalstates/FullCombs_egTOPO.txt", "output/chanser_MC15_noneuttopo");
   //chanser::HipoProcessor processor(&chain,"finalstates/FullPhotonExclCombs.txt", "output/chanser_MCbig");
   //chanser::HipoProcessor processor(&chain,"finalstates/FullAndPhotonCombs.txt", "output/chanser_MCsub");

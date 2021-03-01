@@ -13,22 +13,21 @@
 
   hdata.SetFile("/w/work3/home/pauln/sim/pi0/cooked_out_rgb_pi0_14117.hipo"); //pi0 MC sample file
   //hdata.SetFile("/home/pauln/work/data/pass1v0/ndvcs_006336.hipo");    // data file
-  //hdata.SetFile("/w/work3/home/pauln/sim/OSG_dvcs/dst.hipo");          // OSG DVCS MC sample file
-  //hdata.SetFile("/w/work5/home/robertw/sims/osg_hipo_files/osg_0.hipo"); // OSG file from Robert
 
 
   ////create FinalStateManager
   ////we can load as many saved final states as we like
   FinalStateManager fsm;
   //fsm.SetBaseOutDir("output/6336_chanser.root");
-  fsm.SetBaseOutDir("output/chanser_truth/gammatruth");
+  fsm.SetBaseOutDir("output/chanser_test/");
 
   ////Connect the data to the manager
   fsm.LoadData(&hdata);
 
   ////load one or more FinalStates
-  fsm.LoadFinalState("Pi0", "finalstates/PID_fullcomb.root");
-  //fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb.root"); 
+  fsm.LoadFinalState("Pi0", "finalstates/eff.root");
+  // fsm.LoadFinalState("Pi0", "finalstates/PID_fullcomb.root");
+  // fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb.root"); 
   // fsm.LoadFinalState("Pi0", "finalstates/PID_fullcomb_masked.root"); 
   // fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb_masked.root"); 
 

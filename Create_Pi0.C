@@ -1,6 +1,7 @@
 {
   auto FS = pauln::Pi0::Make("ALL","ALL");
-  FS->AddTopology("Electron:Neutron:Gamma1:Gamma2");
+  //FS->AddTopology("Electron:Neutron:Gamma1:Gamma2");
+  FS->AddTopology("Electron:Gamma1:Gamma2");
   // FS->AddTopology(OTHER_TOPOLOGY);
   
   // try to solve extra neutrals
@@ -38,7 +39,8 @@
   FS->RegisterPostTopoAction(pcm_PCAL);
 
   ////Write to file for later processing
-  FS->WriteToFile("finalstates/PID_fullcomb.root");
+  FS->WriteToFile("finalstates/eff.root");
+  //FS->WriteToFile("finalstates/PID_fullcomb.root");
   // FS->WriteToFile("finalstates/PID_photcomb.root");
   // FS->WriteToFile("finalstates/PID_exclcomb.root");
 
