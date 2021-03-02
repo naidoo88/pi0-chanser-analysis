@@ -20,7 +20,7 @@
   FS->RegisterPostTopoAction(pcm_zk);  //before pdm so these events are not included there either.
 
   // // Perform truth-matching for simulated files
-  EventTruthAction ev_truth("EventTruth");
+  GenePiTruthAction ev_truth("EventTruth");
   FS->RegisterPostKinAction(ev_truth); //PostKin
 
 

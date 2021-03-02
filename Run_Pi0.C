@@ -21,14 +21,14 @@
   ////we can load as many saved final states as we like
   FinalStateManager fsm;
   //fsm.SetBaseOutDir("output/6336_chanser.root");
-  fsm.SetBaseOutDir("output/chanser_test/flag.root");
+  fsm.SetBaseOutDir("output/chanser_truth/gammatruth");
 
   ////Connect the data to the manager
   fsm.LoadData(&hdata);
 
   ////load one or more FinalStates
   fsm.LoadFinalState("Pi0", "finalstates/PID_fullcomb.root");
-  fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb.root"); 
+  //fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb.root"); 
   // fsm.LoadFinalState("Pi0", "finalstates/PID_fullcomb_masked.root"); 
   // fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb_masked.root"); 
 
