@@ -20,8 +20,8 @@
   FS->RegisterPostTopoAction(pcm_zk);  //before pdm so these events are not included there either.
 
   // // Perform truth-matching for simulated files
-  GenePiTruthAction ev_truth("EventTruth");
-  FS->RegisterPostKinAction(ev_truth); //PostKin
+  // GenePiTruthAction ev_truth("EventTruth");
+  // FS->RegisterPostKinAction(ev_truth); //PostKin
 
 
   ///Make particle trees first in case want to add cut flags
@@ -38,7 +38,7 @@
   FS->RegisterPostTopoAction(pcm_PCAL);
 
   ////Write to file for later processing
-  FS->WriteToFile("finalstates/PID_fullcomb.root");
+  FS->WriteToFile("finalstates/truth.root");
   // FS->WriteToFile("finalstates/PID_photcomb.root");
   // FS->WriteToFile("finalstates/PID_exclcomb.root");
 

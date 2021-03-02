@@ -27,7 +27,7 @@
   fsm.LoadData(&hdata);
 
   ////load one or more FinalStates
-  fsm.LoadFinalState("Pi0", "finalstates/PID_fullcomb.root");
+  fsm.LoadFinalState("Pi0", "finalstates/truth.root");
   //fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb.root"); 
   // fsm.LoadFinalState("Pi0", "finalstates/PID_fullcomb_masked.root"); 
   // fsm.LoadFinalState("Pi0", "finalstates/PID_photcomb_masked.root"); 
