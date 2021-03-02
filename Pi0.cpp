@@ -66,9 +66,10 @@ namespace pauln{
     //Use Kinematics to calculate electron variables
     //Note this assumes you called your electron "electron" or "Electron"
     _kinCalc.SetElecsTarget(_beam,_electron.P4(),_target);
+    HSLorentzVector q = _kinCalc.Photon();
     TD->W2 = (_neutron.P4() + (_gamma1.P4() + _gamma2.P4())).M2(); 
     TD->Q2 = _kinCalc.Q2();
-    TD->xB = TD->Q2 / (2 * _target.Dot(_kinCalc.Gamma()));
+    TD->xB = TD->Q2 / (2 * _target.Dot(q));
 
     //TD->tneg=-1*_kinCalc.t(_neutron().P4(), _target); <-- DIFFERENT T!!
     // Double_t tneg = -1 * (_neutron.P4() - _target).M2();
