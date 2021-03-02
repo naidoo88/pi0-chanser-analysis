@@ -2,9 +2,9 @@
   ////Set hipo file to be analysed
 
   //clas12databases::SetRCDBRootConnection("/home/pauln/code/pi0analysis/rcdb_6336.root");
-  clas12databases::SetRCDBRootConnection("/w/work3/home/pauln/analysis/processed/rcdb/rcdb_skimmedP1.root");
+  // clas12databases::SetRCDBRootConnection("/w/work3/home/pauln/analysis/processed/rcdb/rcdb_skimmedP1.root");
 
-  HipoData hdata;
+  HipoTruth hdata;
   //hdata.LoadAnaDB("$CHANSER/rga_actions/anadb/RGA_ACTIONS_PASS1.db");
   hdata.LoadAnaDB("$CHANSER/anadbs/RunPeriodPass1.db");
 
@@ -21,7 +21,7 @@
   ////we can load as many saved final states as we like
   FinalStateManager fsm;
   //fsm.SetBaseOutDir("output/6336_chanser.root");
-  fsm.SetBaseOutDir("output/chanser_truth/gammatruth");
+  fsm.SetBaseOutDir("output/chanser_hipotruth");
 
   ////Connect the data to the manager
   fsm.LoadData(&hdata);
