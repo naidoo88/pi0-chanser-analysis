@@ -7,6 +7,7 @@
   HipoData hdata;
   //hdata.LoadAnaDB("$CHANSER/rga_actions/anadb/RGA_ACTIONS_PASS1.db");
   hdata.LoadAnaDB("$CHANSER/anadbs/RunPeriodPass1.db");
+  hdata.SetRunPeriod("spring_2019");
 
 
   //hdata.SetFile("/home/pauln/work/data/skimmed_pass1v0/ndvcs_006336_preskim.hipo");
