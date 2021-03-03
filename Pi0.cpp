@@ -63,15 +63,15 @@ namespace pauln{
       //    where another Topology could use  Particle recoil = _proton for pHEMP?
       Double_t DEG = TMath::RadToDeg(); //rad->deg conversion
 
-      TD->no_neut_e_magP = _electron.P4().P();
-      TD->no_neut_phot1_magP = _gamma1.P4().P();
-      TD->no_neut_phot2_magP = _gamma2.P4().P();
+      TD->eff_e_magP = _electron.P4().P();
+      TD->eff_phot1_magP = _gamma1.P4().P();
+      TD->eff_phot2_magP = _gamma2.P4().P();
 
-      TD->no_neut_e_theta = DEG*_electron.P4().Theta();
-      TD->no_neut_phot1_theta = DEG*_gamma1.P4().Theta();
-      TD->no_neut_phot2_theta = DEG*_gamma2.P4().Theta();
+      TD->eff_e_theta = DEG*_electron.P4().Theta();
+      TD->eff_phot1_theta = DEG*_gamma1.P4().Theta();
+      TD->eff_phot2_theta = DEG*_gamma2.P4().Theta();
 
-      TD->rec_egg_PID = _neutron.Truth()->_pdgCode;
+      TD->eff_tru_rec_PID = _neutron.Truth()->_pdgCode;
 
 
     }; // close _doToTopo

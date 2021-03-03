@@ -78,7 +78,7 @@ namespace pauln{
     
     //Final Particles Detected
     Particle   _electron = Particle{"e-"};//!
-    // Particle   _neutron = Particle{"neutron"};//!
+    Particle   _neutron = Particle{"neutron"};//!
     Particle   _gamma1 = Particle{"gamma"};//!
     Particle   _gamma2 = Particle{"gamma"};//!
     //chanser::CLAS12Particle _PARTICLE=BaseParticle("PDG");//!

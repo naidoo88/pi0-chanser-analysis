@@ -14,15 +14,15 @@ namespace pauln{
     ~TreeDataPi0() final =default;
       
 
-    Double_t no_neut_e_magP = -1;
-    Double_t no_neut_phot1_magP = -1;
-    Double_t no_neut_phot2_magP = -1;
+    Double_t eff_e_magP = -1;
+    Double_t eff_phot1_magP = -1;
+    Double_t eff_phot2_magP = -1;
 
-    Double_t no_neut_e_theta = -1;
-    Double_t no_neut_phot1_theta = -1;
-    Double_t no_neut_phot2_theta = -1;
+    Double_t eff_e_theta = -1;
+    Double_t eff_phot1_theta = -1;
+    Double_t eff_phot2_theta = -1;
 
-    Short_t rec_egg_PID = -1;
+    Short_t eff_tru_rec_PID = -1;
 
 
     //data member for tree branches below here
