@@ -12,7 +12,7 @@ namespace pauln{
     
                                                 // GenePi LUND looks like:
     AddParticle("Electron",&_electron,kTRUE,0); // 1 -1 1    11 (scattered E)
-    //AddParticle("Neutron",&_neutron,kTRUE,2);   // 2 -1 1  2112 (spectator)
+    AddParticle("Neutron",&_neutron,kTRUE,2);   // 2 -1 1  2112 (spectator)
     AddParticle("Gamma1",&_gamma1,kTRUE,3);     // 3 -1 1  2212 (recoil)
     AddParticle("Gamma2",&_gamma2,kTRUE,4);     // 4 -1 1    22 (photon)
                                                 // 5 -1 1    22 (photon)
@@ -71,7 +71,7 @@ namespace pauln{
       TD->no_neut_phot1_theta = DEG*_gamma1.P4().Theta();
       TD->no_neut_phot2_theta = DEG*_gamma2.P4().Theta();
 
-      // TD->rec_egg_PID = _neutron.Truth()->_pdgCode;
+      TD->rec_egg_PID = _neutron.Truth()->_pdgCode;
 
 
     }; // close _doToTopo
