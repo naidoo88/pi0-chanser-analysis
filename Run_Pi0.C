@@ -6,6 +6,7 @@
 
   HipoTruth hdata;
   //hdata.LoadAnaDB("$CHANSER/rga_actions/anadb/RGA_ACTIONS_PASS1.db");
+  hdata.SetRunPeriod("spring_2019");
   hdata.LoadAnaDB("$CHANSER/anadbs/RunPeriodPass1.db");
 
 
