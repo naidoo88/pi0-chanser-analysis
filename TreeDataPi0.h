@@ -22,7 +22,11 @@ namespace pauln{
     Double_t eff_phot1_theta = -1;
     Double_t eff_phot2_theta = -1;
 
+    Double_t eff_tru_rec_theta = -1;
     Short_t eff_tru_rec_PID = -1;
+    Short_t eff_tru_rec_PID_CD = -1;
+    Short_t eff_tru_rec_PID_FD = -1;
+
 
 
     //data member for tree branches below here

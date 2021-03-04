@@ -71,7 +71,20 @@ namespace pauln{
       TD->eff_phot1_theta = DEG*_gamma1.P4().Theta();
       TD->eff_phot2_theta = DEG*_gamma2.P4().Theta();
 
-      TD->eff_tru_rec_PID = _neutron.Truth()->_pdgCode;
+      TD->eff_tru_rec_theta = DEG*_neutron.Truth()->_p4.Theta();
+
+      Short_t recoil_PID = _neutron.Truth()->_pdgCode;
+      TD->eff_tru_rec_PID = recoil_PID;
+
+      // reset these:
+      TD->eff_tru_rec_PID_CD = -1;
+      TD->eff_tru_rec_PID_FD = -1;
+
+      if (TD->eff_tru_rec_theta > 35 && TD->eff_tru_rec_theta < 125)
+        TD->eff_tru_rec_PID_CD = recoil_PID;
+      
+      if (TD->eff_tru_rec_theta > 5 && TD->eff_tru_rec_theta < 35)
+        TD->eff_tru_rec_PID_FD = recoil_PID;
 
 
     }; // close _doToTopo
